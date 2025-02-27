@@ -1,5 +1,5 @@
-# Use uma base com OpenJDK 23
-FROM eclipse-temurin:23-jdk-jammy
+# Use uma base com OpenJDK 21
+FROM eclipse-temurin:21-jdk-jammy
 
 # Defina o diretório de trabalho
 WORKDIR /app
