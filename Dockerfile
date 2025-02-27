@@ -4,14 +4,11 @@ FROM eclipse-temurin:21-jdk-jammy
 # Defina o diretório de trabalho
 WORKDIR /app
 
-# Copie o arquivo build.gradle e settings.gradle
-COPY build.gradle settings.gradle ./
-
-# Baixe as dependências do Gradle (sem build)
-RUN chmod +x gradlew && ./gradlew dependencies --no-daemon
-
-# Copie todo o código do projeto
+# Copie todo o código do projeto (incluindo gradlew, gradlew.bat, e gradle)
 COPY . .
+
+# Dê permissão de execução ao gradlew e baixe as dependências do Gradle
+RUN chmod +x gradlew && ./gradlew dependencies --no-daemon
 
 # Build o projeto com Gradle, pulando testes para acelerar
 RUN ./gradlew clean build -x check -x test
