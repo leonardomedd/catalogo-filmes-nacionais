@@ -26,6 +26,21 @@ dependencies {
 	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.3.0'
 }
 
+allprojects {
+    tasks.withType(JavaCompile).configureEach {
+        javaCompiler = javaToolchains.compilerFor {
+            languageVersion = JavaLanguageVersion.of(23)
+        }
+    }
+
+    java {
+        toolchain {
+            languageVersion = JavaLanguageVersion.of(23)
+            vendor = JvmVendorSpec.AZUL  
+        }
+    }
+}
+
 tasks.named('test') {
 	useJUnitPlatform()
 }
